@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="TaskFlow is a responsive student task management application.">
+
+    <title>TaskFlow | Student Project Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container navigation">
+            <a href="#home" class="logo" aria-label="TaskFlow home">
+                <span class="logo-icon">T</span>
+                <span>TaskFlow</span>
+            </a>
+
+            <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation menu"
+                aria-expanded="false">
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+                <a href="#home">Home</a>
+                <a href="#dashboard">Dashboard</a>
+                <a href="#features">Features</a>
+                <a href="#about">About</a>
+
+                <button class="theme-button" id="themeButton" type="button" aria-label="Switch theme">
+                    ☾
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="eyebrow">Student productivity workspace</span>
+
+                    <h1>
+                        Organize your work.
+                        <span>Finish with confidence.</span>
+                    </h1>
+
+                    <p>
+                        Manage university assignments, personal tasks and project
+                        deadlines from one simple and responsive dashboard.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#dashboard" class="button button-primary">
+                            Start planning
+                        </a>
+
+                        <a href="#features" class="button button-secondary">
+                            Explore features
+                        </a>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div>
+                            <strong id="heroTotalTasks">0</strong>
+                            <span>Total tasks</span>
+                        </div>
+
+                        <div>
+                            <strong id="heroCompletedTasks">0</strong>
+                            <span>Completed</span>
+                        </div>
+
+                        <div>
+                            <strong id="heroProgress">0%</strong>
+                            <span>Progress</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="hero-card">
+                    <div class="hero-card-header">
+                        <div>
+                            <span class="small-label">Today</span>
+                            <h2>Your progress</h2>
+                        </div>
+
+                        <span class="status-badge">On track</span>
+                    </div>
+
+                    <div class="progress-circle" id="progressCircle">
+                        <div>
+                            <strong id="circleProgress">0%</strong>
+                            <span>Complete</span>
+                        </div>
+                    </div>
+
+                    <div class="mini-task">
+                        <span class="task-dot purple"></span>
+                        <div>
+                            <strong>Complete important tasks</strong>
+                            <span>Stay focused on your goals</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="dashboard-section" id="dashboard">
+            <div class="container">
+                <div class="section-heading">
+                    <div>
+                        <span class="eyebrow">Interactive dashboard</span>
+                        <h2>Plan your next move</h2>
+                    </div>
+
+                    <button class="button button-primary" id="openTaskForm" type="button">
+                        + Add new task
+                    </button>
+                </div>
+
+                <div class="summary-grid">
+                    <article class="summary-card">
+                        <span class="summary-icon blue">▣</span>
+
+                        <div>
+                            <span>Total tasks</span>
+                            <strong id="totalTasks">0</strong>
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <span class="summary-icon orange">◷</span>
+
+                        <div>
+                            <span>In progress</span>
+                            <strong id="pendingTasks">0</strong>
+                        </div>
+                    </article>
+
+                    <article class="summary-card">
+                        <span class="summary-icon green">✓</span>
+
+                        <div>
+                            <span>Completed</span>
+                            <strong id="completedTasks">0</strong>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="dashboard-layout">
+                    <section class="task-panel" aria-labelledby="taskHeading">
+                        <div class="panel-header">
+                            <div>
+                                <span class="small-label">My workspace</span>
+                                <h3 id="taskHeading">Current tasks</h3>
+                            </div>
+
+                            <div class="filters" aria-label="Filter tasks">
+                                <button class="filter-button active" data-filter="all">
+                                    All
+                                </button>
+
+                                <button class="filter-button" data-filter="pending">
+                                    Pending
+                                </button>
+
+                                <button class="filter-button" data-filter="completed">
+                                    Completed
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="task-list" id="taskList"></div>
+
+                        <div class="empty-state" id="emptyState" hidden>
+                            <span>✓</span>
+                            <h3>No tasks here</h3>
+                            <p>Add a task or select a different filter.</p>
+                        </div>
+                    </section>
+
+                    <aside class="progress-panel">
+                        <span class="small-label">Weekly overview</span>
+                        <h3>Completion progress</h3>
+
+                        <div class="progress-information">
+                            <span>Tasks completed</span>
+                            <strong id="progressText">0%</strong>
+                        </div>
+
+                        <div class="progress-bar" role="progressbar" aria-label="Task completion progress"
+                            aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressBarContainer">
+                            <span id="progressBar"></span>
+                        </div>
+
+                        <div class="progress-message">
+                            <span>★</span>
+
+                            <p id="progressMessage">
+                                Add your first task to begin tracking progress.
+                            </p>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section class="features-section" id="features">
+            <div class="container">
+                <div class="centered-heading">
+                    <span class="eyebrow">Why TaskFlow?</span>
+                    <h2>Everything needed to stay organized</h2>
+
+                    <p>
+                        A focused task manager built with semantic HTML, responsive CSS
+                        and interactive JavaScript.
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <article class="feature-card">
+                        <span class="feature-number">01</span>
+                        <h3>Easy task planning</h3>
+                        <p>
+                            Create tasks with categories, deadlines and priority levels.
+                        </p>
+                    </article>
+
+                    <article class="feature-card featured">
+                        <span class="feature-number">02</span>
+                        <h3>Progress tracking</h3>
+                        <p>
+                            Monitor completed and pending work through live statistics.
+                        </p>
+                    </article>
+
+                    <article class="feature-card">
+                        <span class="feature-number">03</span>
+                        <h3>Responsive design</h3>
+                        <p>
+                            Use the dashboard comfortably on desktop, tablet or mobile.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section" id="about">
+            <div class="container about-grid">
+                <div>
+                    <span class="eyebrow">About the project</span>
+                    <h2>Built with web fundamentals</h2>
+                </div>
+
+                <div class="about-content">
+                    <p>
+                        TaskFlow is a frontend internship project demonstrating semantic
+                        HTML5, CSS Grid, Flexbox, responsive media queries and JavaScript
+                        state management.
+                    </p>
+
+                    <div class="technology-list">
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>JavaScript</span>
+                        <span>Local Storage</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="modal-overlay" id="taskModal" hidden>
+        <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+            <div class="modal-header">
+                <div>
+                    <span class="small-label">Create task</span>
+                    <h2 id="modalTitle">What needs to be done?</h2>
+                </div>
+
+                <button class="close-button" id="closeTaskForm" type="button" aria-label="Close task form">
+                    ×
+                </button>
+            </div>
+
+            <form id="taskForm">
+                <div class="form-group">
+                    <label for="taskTitle">Task title</label>
+
+                    <input type="text" id="taskTitle" maxlength="60" placeholder="Example: Complete frontend assignment"
+                        required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="taskCategory">Category</label>
+
+                        <select id="taskCategory">
+                            <option value="University">University</option>
+                            <option value="Project">Project</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Work">Work</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskPriority">Priority</label>
+
+                        <select id="taskPriority">
+                            <option value="high">High</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="low">Low</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="taskDate">Deadline</label>
+                    <input type="date" id="taskDate" required>
+                </div>
+
+                <button class="button button-primary full-button" type="submit">
+                    Add task
+                </button>
+            </form>
+        </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <footer>
+        <div class="container footer-content">
+            <a href="#home" class="logo">
+                <span class="logo-icon">T</span>
+                <span>TaskFlow</span>
+            </a>
+
+            <p>Responsive Frontend Internship Project</p>
+
+            <p>© <span id="currentYear"></span> TaskFlow</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
